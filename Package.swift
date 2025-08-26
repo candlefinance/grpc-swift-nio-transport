@@ -38,20 +38,20 @@ let dependencies: [Package.Dependency] = [
     from: "2.0.0"
   ),
   .package(
-    url: "https://github.com/apple/swift-nio.git",
-    from: "2.78.0"
+    url: "https://github.com/candlefinance/swift-nio.git", 
+    exact: "2.82.1-candle"
   ),
   .package(
     url: "https://github.com/apple/swift-nio-http2.git",
     from: "1.35.0"
   ),
   .package(
-    url: "https://github.com/apple/swift-nio-transport-services.git",
-    from: "1.20.0"
+    url: "https://github.com/candlefinance/swift-nio-transport-services.git",
+    exact: "1.24.0-candle"
   ),
   .package(
-    url: "https://github.com/apple/swift-nio-ssl.git",
-    from: "2.31.0"
+    url: "https://github.com/candlefinance/swift-nio-ssl.git", 
+    exact: "2.30.0-candle"
   ),
   .package(
     url: "https://github.com/apple/swift-nio-extras.git",
