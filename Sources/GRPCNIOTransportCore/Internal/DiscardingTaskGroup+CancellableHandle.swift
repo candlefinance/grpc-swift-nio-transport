@@ -21,7 +21,6 @@ extension DiscardingTaskGroup {
   /// - Parameter operation: The task to add to the group.
   /// - Returns: A handle which can be used to cancel the task without cancelling the rest of
   ///     the group.
-  @inlinable
   mutating func addCancellableTask(
     _ operation: @Sendable @escaping () async -> Void
   ) -> CancellableTaskHandle {
@@ -54,25 +53,20 @@ extension DiscardingTaskGroup {
     return CancellableTaskHandle(continuation: signal.continuation)
   }
 
-  @usableFromInline
   enum FinishedOrCancelled: Sendable {
     case finished
     case cancelled
   }
 }
 
-@usableFromInline
 @available(gRPCSwiftNIOTransport 2.0, *)
 struct CancellableTaskHandle: Sendable {
-  @usableFromInline
   private(set) var continuation: AsyncStream<Void>.Continuation
 
-  @inlinable
   init(continuation: AsyncStream<Void>.Continuation) {
     self.continuation = continuation
   }
 
-  @inlinable
   func cancel() {
     self.continuation.finish()
   }

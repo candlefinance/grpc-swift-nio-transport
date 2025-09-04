@@ -20,42 +20,34 @@ public import NIOCore
 /// The contiguous bytes type used by the gRPC's NIO transport.
 @available(gRPCSwiftNIOTransport 2.0, *)
 public struct GRPCNIOTransportBytes: GRPCContiguousBytes, Hashable, Sendable {
-  @usableFromInline
   internal var buffer: ByteBuffer
 
-  @inlinable
   internal init(_ buffer: ByteBuffer) {
     self.buffer = buffer
   }
 
-  @inlinable
   internal init() {
     self.buffer = ByteBuffer()
   }
 
-  @inlinable
   public init(repeating: UInt8, count: Int) {
     self.buffer = ByteBuffer(repeating: repeating, count: count)
   }
 
-  @inlinable
   public init(_ sequence: some Sequence<UInt8>) {
     self.buffer = ByteBuffer(bytes: sequence)
   }
 
-  @inlinable
   public var count: Int {
     self.buffer.readableBytes
   }
 
-  @inlinable
   public func withUnsafeBytes<R>(
     _ body: (UnsafeRawBufferPointer) throws -> R
   ) rethrows -> R {
     try self.buffer.withUnsafeReadableBytes(body)
   }
 
-  @inlinable
   public mutating func withUnsafeMutableBytes<R>(
     _ body: (UnsafeMutableRawBufferPointer) throws -> R
   ) rethrows -> R {
